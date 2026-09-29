@@ -1,0 +1,30 @@
+{
+  "name": "afyabora",
+  "version": "1.0.0",
+  "description": "AfyaBora health management system",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "echo \"No tests configured yet\" && exit 0"
+  },
+  "keywords": [
+    "healthcare",
+    "afyabora",
+    "express",
+    "ejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.5.1"
+  }
+}

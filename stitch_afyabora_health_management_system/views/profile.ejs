@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title || 'Profile - AfyaBora' %></title>
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0f766e',
+              primaryDark: '#115e59',
+              secondary: '#38bdf8',
+              accent: '#ecfeff',
+              surface: '#f5fbfb',
+              'surface-container-lowest': '#ffffff',
+              'surface-container-low': '#ecfeff',
+              'on-primary': '#ffffff',
+              'on-secondary-container': '#0f172a',
+              'on-surface': '#0f172a',
+              'on-surface-variant': '#475569',
+              'outline-variant': '#bae6fd',
+              'primary-container': '#ccfbf1',
+              'on-primary-container': '#134e4a'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    body { background: linear-gradient(135deg, #f0fdfa 0%, #f8fafc 100%); font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .content-panel,
+    .content-panel * {
+      color: #0f766e !important;
+    }
+    .ui-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 0.9rem;
+      padding: 0.72rem 1rem;
+      border: 1px solid #dbeafe;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      color: #0f766e;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(15, 118, 110, 0.08);
+      transition: all 0.2s ease;
+    }
+    .ui-button:hover {
+      transform: translateY(-1px);
+      border-color: #99f6e4;
+      background: linear-gradient(180deg, #ecfeff 0%, #f0fdfa 100%);
+      color: #115e59;
+    }
+    .ui-button-primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, #0f766e 0%, #06b6d4 100%);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(13, 148, 136, 0.2);
+    }
+    .ui-button-primary:hover {
+      color: #fff;
+      background: linear-gradient(135deg, #0f766e 0%, #0ea5e9 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-surface text-on-surface">
+  <div class="flex min-h-screen">
+    <aside class="hidden w-72 flex-col justify-between bg-gradient-to-br from-teal-700 via-cyan-600 to-blue-800 px-5 py-6 text-white shadow-lg shadow-cyan-900/20 lg:flex">
+      <div>
+        <div class="mb-8 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 backdrop-blur-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10"><span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">medical_services</span></div>
+          <div>
+            <p class="text-xl font-black tracking-tight">AfyaBora</p>
+            <p class="text-xs text-slate-200/80">Clinical management</p>
+          </div>
+        </div>
+        <nav class="space-y-2">
+          <a href="/dashboard" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+          <a href="/patients/search" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">search</span> Patient Search</a>
+          <a href="/triage" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">monitor_heart</span> Triage</a>
+          <a href="/referrals" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">swap_horiz</span> Referrals</a>
+        </nav>
+      </div>
+      <div class="space-y-2 border-t border-white/10 pt-4">
+        <a href="/settings" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">settings</span> Settings</a>
+        <a href="/support" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">support_agent</span> Support</a>
+        <a href="/profile" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold bg-white/10 text-white shadow-inner"><span class="material-symbols-outlined">person</span> Profile</a>
+        <a href="/logout" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-200/80 hover:bg-white/5 hover:text-white"><span class="material-symbols-outlined">logout</span> Logout</a>
+      </div>
+    </aside>
+
+    <div class="flex-1 overflow-hidden">
+      <header class="flex h-20 items-center justify-between border-b border-slate-200 bg-white/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
+        <div class="hidden lg:block"></div>
+        <div class="ml-auto flex items-center gap-4">
+          <button class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">Alerts</button>
+          <a href="/profile" class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 py-2">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 text-sm font-black text-white"><%= (user && user.name ? user.name.charAt(0).toUpperCase() : 'C') %></div>
+            <div class="hidden text-left md:block">
+              <p class="text-sm font-bold text-slate-900"><%= user ? user.name : 'Clinician' %></p>
+              <p class="text-xs text-slate-500"><%= user ? user.role : 'User' %></p>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <main class="h-[calc(100vh-80px)] overflow-y-auto bg-slate-50 p-4 sm:p-6 lg:p-8">
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700/70">Account</p>
+              <h1 class="mt-1 text-3xl font-black tracking-tight text-slate-900">Edit Profile</h1>
+            </div>
+            <a href="/dashboard" class="ui-button ui-button-primary px-4 py-2.5">Back to dashboard</a>
+          </div>
+
+          <form action="/profile" method="post" class="grid gap-6 md:grid-cols-3">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:col-span-1">
+              <div class="flex flex-col items-center">
+                <div class="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 text-3xl font-black text-white">
+                  <%= (user && user.name ? user.name.charAt(0).toUpperCase() : 'C') %>
+                </div>
+                <p class="mt-4 text-sm font-medium text-slate-500">Current role</p>
+                <p class="text-lg font-black text-slate-900"><%= user ? user.role : 'User' %></p>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:col-span-2">
+              <div class="space-y-6">
+                <div>
+                  <h2 class="mb-4 text-lg font-black text-slate-900">Professional details</h2>
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label class="mb-2 block text-sm font-semibold text-slate-700">Full Name</label>
+                      <input name="name" value="<%= user ? user.name : 'Clinician' %>" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" />
+                    </div>
+                    <div>
+                      <label class="mb-2 block text-sm font-semibold text-slate-700">Role</label>
+                      <input name="role" value="<%= user ? user.role : 'User' %>" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" />
+                    </div>
+                    <div>
+                      <label class="mb-2 block text-sm font-semibold text-slate-700">Department</label>
+                      <input name="department" value="<%= user && user.department ? user.department : 'Emergency Care' %>" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" />
+                    </div>
+                    <div>
+                      <label class="mb-2 block text-sm font-semibold text-slate-700">Shift</label>
+                      <input name="shift" value="<%= user && user.shift ? user.shift : 'Morning / 08:00-16:00' %>" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 class="mb-4 text-lg font-black text-slate-900">Account</h2>
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
+                      <input name="email" value="<%= user && user.email ? user.email : 'clinician@afyabora.health' %>" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" />
+                    </div>
+                    <div>
+                      <label class="mb-2 block text-sm font-semibold text-slate-700">Phone</label>
+                      <input name="phone" value="<%= user && user.phone ? user.phone : '+254 712 000 000' %>" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-800 outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-2">
+                  <a href="/profile" class="ui-button">Cancel</a>
+                  <button type="submit" class="ui-button ui-button-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
